@@ -17,7 +17,7 @@ class ViewController: UIPageViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.dataSource = self;
-    self.setViewControllers([vcs[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
+		self.setViewControllers([vcs[0]], direction: UIPageViewController.NavigationDirection.forward, animated: true, completion: nil)
   }
   
   override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -27,9 +27,9 @@ class ViewController: UIPageViewController {
 
 extension ViewController: UIPageViewControllerDataSource{
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?{
-    return vcs[(vcs.index(of: viewController)! - 1 + vcs.count) % vcs.count];
+		return vcs[(vcs.firstIndex(of: viewController)! - 1 + vcs.count) % vcs.count];
   }
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController?{
-    return vcs[(vcs.index(of: viewController)! + 1) % vcs.count];
+		return vcs[(vcs.firstIndex(of: viewController)! + 1) % vcs.count];
   }
 }
